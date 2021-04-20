@@ -18,6 +18,12 @@ jobs:
       - name: run a script that updates a INFO.txt file with some contents
         run: python ./src/write_to_file.py --status ${{ job.status }}
       - name: commit all files
-        run: git commit -am "new INFO.txt"
-      - name: push commit
-        run: git push
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -am "new INFO.txt"
+      - name: push changes
+        uses: ad-m/github-push-action@master
+        with:
+            github_token: ${{ secrets.GH_TOKEN }}
+            branch: "main"
