@@ -15,3 +15,5 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+      - name: run a script that updates a INFO.txt file with some contents
+      - run: python ./src/write_to_file.py --status ${{ job.status }}
