@@ -17,3 +17,7 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: run a script that updates a INFO.txt file with some contents
         run: python ./src/write_to_file.py --status ${{ job.status }}
+      - name: commit all files
+        run: git commit -am "new INFO.txt"
+      - name: push commit
+        run: git push
